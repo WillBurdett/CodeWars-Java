@@ -32,7 +32,6 @@ public class MostFreqWords {
         System.out.println(answer);
 
         List <String> finalAnswer = new ArrayList<>();
-//        finalAnswer = List.of(answer.get());
         return null;
     }
 
