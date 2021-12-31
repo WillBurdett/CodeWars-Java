@@ -3,6 +3,7 @@ package com.btn;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+// My refactored solution
 public class CountIPAddresses {
     public static long totalSum(String input){
         String[] inputArr = input.split("\\.");
@@ -17,6 +18,8 @@ public class CountIPAddresses {
     public static long ipsBetween(String start, String end) {
         return totalSum(start) > totalSum(end) ? totalSum(start) - totalSum(end) : totalSum(end) - totalSum(start);
     }
+
+// My original solution
 //    public static long ipsBetween(String start, String end) {
 //
 //        start = start.replace(".", " ");
