@@ -108,5 +108,6 @@ public class Median {
 
             // findMedianSortedArrays(test, test2);
             findMedianSorted(test, test2);
+
         }
     }
