@@ -47,8 +47,6 @@ public class Triplets {
             remaining.add(key.toString());
         }
 
-        System.out.println(remaining);
-
         for (char[] triplet : triplets) {
             for(int i=0; i< triplet.length; i++){
                 result.put(triplet[i], result.get(triplet[i]) + i);
@@ -64,11 +62,54 @@ public class Triplets {
                 }
             }
 
-        System.out.println(remaining);
-        System.out.println(result);
-        System.out.println(added);
-        return "";
+        comparePlacements(remaining, added, triplets);
+        return String.join("", added);
     }
+
+    public static List<String> comparePlacements(List<String> remaining, List<String> added, char[][] triplets) {
+        Map<String, Integer> result = new HashMap<>();
+        for (String s : remaining) {
+            if (!result.containsKey(s)) {
+                result.put(s, 0);
+            }
+            for (char[] t : triplets) {
+                for (int i = 0; i < t.length; i++) {
+                    if (i == 1 && String.valueOf(t[i]).equals(s)) {
+                        if (!listContains(added, String.valueOf(t[0]))){
+                            result.put(String.valueOf(t[i]), result.get(String.valueOf(t[i])) + 1);
+                        }
+                    } else if (i == 2 && String.valueOf(t[i]).equals(s)) {
+                        if (!listContains(added, String.valueOf(t[0])) || !listContains(added, String.valueOf(t[1]))){
+                            result.put(String.valueOf(t[i]), result.get(String.valueOf(t[i])) + 1);
+                        }
+                    }
+                }
+            }
+        }
+        for (String key : result.keySet()) {
+            if (result.get(key) == 0){
+                added.add(key);
+                remaining.remove(key);
+                result.remove(key);
+                break;
+            }
+        }
+
+        if (remaining.size() > 0){
+            comparePlacements(remaining, added, triplets);
+        }
+        return added;
+    }
+
+    public static boolean listContains(List<String> added, String input){
+        for (String s : added) {
+            if (input.equals(s)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         // "whatisup"
