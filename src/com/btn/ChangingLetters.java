@@ -8,9 +8,16 @@ public class ChangingLetters {
                .replaceAll("o", "O")
                .replaceAll("u", "U");
     }
-
     public static void main(String[] args) {
-        System.out.println(swap("input"));
+        for (String s:
+             args) {
+            System.out.println(swap(s));
+        }
     }
 }
+
+// javac com/btn/ChangingLetters.java
+// java com/btn/ChangingLetters
+
+
 
